@@ -1,23 +1,56 @@
 # real-problems
 
-给编码 agent 用的 skill：对已经在磁盘上的 skill、给 agent 看的说明、或给人看的手册，多角度找出真问题，两道闸门后再改文件。
+一个专为 AI 编码助手（Agent）设计的规范修改工具（Skill）：针对已存在于本地磁盘的各类 **Skill 技能定义**、**AI 规则说明（如 `AGENTS.md`）** 或 **操作手册**，通过多角度并行审查找出真正影响执行的硬伤（真问题），并在人工审核确认（闸门机制）后精准修改文件。
 
-运行时排错、产品取舍、从零新建、代码拆模块，不要走这套。
+---
 
-## 安装
+## 核心特性
 
-```text
+- **只抓真问题**：拒绝模棱两可的主观润色，只处理“能指到具体位置、且不改必定导致规则失效”的硬缺陷。
+- **人工闸门把关**：在调研、确定问题清单、确认最终改法等关键节点均需人工确认，绝不擅自破坏原有规则。
+- **快照与精准修改**：修改前自动在系统临时目录备份快照，修改后严格比对 diff 并验证问题消除，不夹带任何方案外改动。
+
+---
+
+## 适用与不适用场景
+
+### ✅ 适用场景
+- 优化和修复现有的 Agent Skill（如各类 `.cursor/skills/`）。
+- 梳理和消除 AI 提示词、规则文件（`AGENTS.md`、`.cursorrules`）中的前后矛盾与逻辑漏洞。
+- 完善操作指南、发布手册、Runbook 等流程规范。
+
+### ❌ 不适用场景
+- **代码运行时报错排查**：请使用常规排查工具或排查类 skill（如 `diagnosing-bugs`）。
+- **产品与业务需求讨论**：请使用需求评审工具（如 `grilling`）。
+- **从零新建 Skill**：请使用 `create-skill`。
+- **代码架构重构与拆模块**：请使用代码设计类工具。
+
+---
+
+## 安装与使用
+
+### 1. 安装
+
+在命令行中执行：
+
+```bash
 npx skills add Shengjingwa/real-problems-skill
 ```
 
-也可以把 `skills/real-problems/` 整目录拷到本机：
+> **注意**：
+> - 本仓库内的 `skills/real-problems/` 即为 Skill 本体，目录名必须保持为 `real-problems`（与 `SKILL.md` 中的 `name` 一致）。
+> - 运行过程中产生的记录笔记会自动保存在本仓库的 `docs/` 目录下（已在 `.gitignore` 中忽略，不提交到 git）。
 
-- Cursor / Codex：`~/.agents/skills/real-problems/` 和 `~/.cursor/skills/real-problems/`
+### 2. 使用
 
-目录名必须是 `real-problems`，和 `SKILL.md` 里的 `name` 一致。拷完后在该目录放 `source-root`，一行，填本仓库在磁盘上的绝对路径。每次跑留下的清单写在本仓 `docs/`，不进 git。
+在 Cursor 中新建对话，输入斜杠命令即可调用：
 
-新开一聊后敲 `/real-problems`。
+```text
+/real-problems
+```
+
+---
 
 ## 许可证
 
-MIT。见 [LICENSE](LICENSE)。
+本项目基于 [MIT 许可证](LICENSE) 开源。
