@@ -36,7 +36,7 @@ disable-model-invocation: true
   - **核对材料**：模板、证据、图表、附图，或用户明确指定的核对件 → 必须通读并记路径；只传给相关评审者；默认不列入修改对象，第 8 步不动。
   - **其它指针**：按原文需要读取或引用，不列入修改对象，不默认传给所有评审者；记录排除理由。
 - **前置阅读分流**：
-  - 修改对象为 **Agent Skill**：主 agent 与所有 subagent 在提交草案或修改文件前，必须通读 `writing-for-agents` 与 `SKILL-MECHANICS.md`。
+  - 修改对象为 **Agent Skill**：主 agent 与所有 subagent 在提交草案或修改文件前，必须通读 `writing-for-agents` 的 `SKILL.md` 与同目录的 `SKILL-MECHANICS.md`，按当前宿主的 skill 清单和已知安装位置解析路径。确认不可读后，将依赖它的步骤标为 `blocked`，说明缺哪个和上游地址（https://github.com/mattpocock/skills 的 `skills/productivity/writing-for-agents`），并继续不依赖它的工作；`blocked` 的步骤不能报告为完成。
   - 修改对象属于第 4 类：主 agent 与第 3、6 步 subagent 必须通读命中的文类参考；同时读取与各自任务相关的核对材料。
   - 其它对象：跳过上述前置参考。
 - **不适用场景（立即停止并指引正确途径，不自动调用）**：

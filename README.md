@@ -70,6 +70,14 @@ npx skills add Shengjingwa/real-problems-skill
 
 ---
 
+## 前置依赖
+
+审查 Agent Skill 时，本技能要求先通读 `writing-for-agents` 的 `SKILL.md` 与同目录的 `SKILL-MECHANICS.md`（来自 [mattpocock/skills](https://github.com/mattpocock/skills) 的 `skills/productivity/writing-for-agents` 目录）。审查其它类别的对象不需要它。
+
+若环境中缺失，Agent 会把依赖它的步骤标为 `blocked`，提示缺失项及安装地址；其它不依赖它的工作继续，`blocked` 的步骤不能报告为完成。
+
+---
+
 ## 许可证
 
 本项目基于 [MIT 许可证](LICENSE) 开源。
